@@ -11,33 +11,69 @@ class RootViewController:UIViewController {
     
     // Label생성
     // MARK: Properties
-    lazy var helloWorldLabel:UILabel = {
-       let label = UILabel()
-        label.text = "Hello World!"
-        return label // return label로 helloworldLabel과 label은 같은게 된다.
+    lazy var titleLabel:UILabel = {
+        let label = UILabel()
+        label.text = "JaeHee's"
+        label.font = UIFont.italicSystemFont(ofSize: 38)
+        return label
     }()
     
-    //Button생성
-    lazy var helloWorldButton:UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        button.setTitle("Hello World", for: UIControl.State.normal)
-        return button
+    lazy var loginLabel:UILabel = {
+        let label = UILabel()
+        label.text = "ようこそ！！"
+        return label
     }()
     
-    lazy var helloWorldView:UIView = {
+    lazy var loginTextField:UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "ID"
+        return tf
+    }()
+    
+    lazy var loginTextFieldView:UIView = {
        let view = UIView()
-        //view.backgroundColor = .tertiarySystemGroupedBackground
-        view.layer.borderWidth = 3
-        //view.layer.borderColor = CGColor.init(red: 10, green: 10, blue: 10, alpha: 1)
+        view.layer.cornerRadius = 10
         view.layer.borderColor = UIColor.tertiarySystemGroupedBackground.cgColor
-        view.layer.cornerRadius = 20
+        view.layer.borderWidth = 2
+        view.addSubview(loginTextField)
+        loginTextField.translatesAutoresizingMaskIntoConstraints = false
+        loginTextField.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        loginTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        loginTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        loginTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         return view
     }()
     
-    //
-    lazy var helloWorldTextField:UITextField = {
-       let tf = UITextField()
+    lazy var passwordTextFieldView:UIView = {
+       let view = UIView()
+        view.layer.cornerRadius = 10
+        view.layer.borderColor = UIColor.tertiarySystemGroupedBackground.cgColor
+        view.layer.borderWidth = 2
+        view.addSubview(self.passwordTextField)
+        self.passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.passwordTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        self.passwordTextField.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        self.passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        self.passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        
+        return view
+    }()
+    
+    lazy var passwordTextField:UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "PW"
+        tf.isSecureTextEntry = true
         return tf
+    }()
+    
+    lazy var loginButton:UIButton = {
+        
+    //let button = UIButton()
+        //버튼 눌리게 만들기
+        let button = UIButton(type: UIButton.ButtonType.system)
+        button.setTitle("LOGIN", for: UIControl.State.normal)
+        button.layer.cornerRadius = 10
+        return button
     }()
     
     // MARK: Life Cycle functions
@@ -49,53 +85,67 @@ class RootViewController:UIViewController {
         //print("viewDidLoad")
         configureViewComponent()
         self.hideKeyboardWhenTappedAround()
-        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        //버튼을 눌렀을때도 키보드가 사라지게 할수 있다.
-//        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
     }
     
-    // 키보드를 사라지게 하는 함수!!
-//    @objc func dismissKeyboard(){
-//        //키보드가 사라지게 하기위한 코드
-//        view.endEditing(true)
-//    }
-    
+    // 다크테마를 취소하면 Login view가 변하지 않을때
+    // MARK: Override
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // 디바이스의 테마가 변경될때마다 발동되어진다.
+        configureColors()
+    }
     
     
     // 생김새 뷰를 담당하는 함수 따로정리
     // MARK: Configures
+    func configureColors() {
+        // view가 어두운테마일때
+        if self.traitCollection.userInterfaceStyle == .dark {
+            loginButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
+            loginButton.backgroundColor = .white
+        // view가 밝은 테마일때
+        } else {
+            loginButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+            loginButton.backgroundColor = .black
+        }
+            
+    }
+    
+    
     func configureViewComponent() {
         // self는 생략가능하고, RootViewController = UIViewController(화면View)를 의미
         self.view.backgroundColor = .systemBackground
         
-        view.addSubview(helloWorldLabel)
-        helloWorldLabel.translatesAutoresizingMaskIntoConstraints = false
-        //helloworldLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        //helloworldLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        // 센터 X,Y축과 View의 X,Y의 축을 동일시 하게 설정
-        helloWorldLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        helloWorldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 90).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    
+        view.addSubview(loginLabel)
+        loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        loginLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
+        loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        view.addSubview(helloWorldButton)
-        helloWorldButton.translatesAutoresizingMaskIntoConstraints = false
-        helloWorldButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        helloWorldButton.topAnchor.constraint(equalTo: helloWorldLabel.bottomAnchor, constant: 10).isActive = true
+        view.addSubview(loginTextFieldView)
+        loginTextFieldView.translatesAutoresizingMaskIntoConstraints = false
+        loginTextFieldView.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50).isActive = true
+        loginTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginTextFieldView.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+        loginTextFieldView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    
+        view.addSubview(passwordTextFieldView)
+        passwordTextFieldView.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextFieldView.topAnchor.constraint(equalTo: loginTextFieldView.bottomAnchor, constant: 20).isActive = true
+        passwordTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        passwordTextFieldView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        passwordTextFieldView.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+    
+        view.addSubview(loginButton)
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.topAnchor.constraint(equalTo: passwordTextFieldView.bottomAnchor, constant: 40).isActive = true
+        loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginButton.widthAnchor.constraint(equalToConstant: view.frame.width - 80).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        view.addSubview(helloWorldView)
-        helloWorldView.translatesAutoresizingMaskIntoConstraints = false
-        helloWorldView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        helloWorldView.topAnchor.constraint(equalTo: helloWorldButton.bottomAnchor, constant: 10).isActive = true
-        helloWorldView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        helloWorldView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        view.addSubview(helloWorldTextField)
-        helloWorldTextField.translatesAutoresizingMaskIntoConstraints = false
-        helloWorldTextField.topAnchor.constraint(equalTo: helloWorldView.topAnchor).isActive = true
-        helloWorldTextField.bottomAnchor.constraint(equalTo: helloWorldView.bottomAnchor).isActive = true
-        helloWorldTextField.leftAnchor.constraint(equalTo: helloWorldView.leftAnchor, constant: 4).isActive = true
-        //right와 bottom의 제약조건을 줄때는 항상 -몇으로 설정한다.
-        helloWorldTextField.rightAnchor.constraint(equalTo: helloWorldView.rightAnchor, constant: -4).isActive = true
+        configureColors()
     }
 }
