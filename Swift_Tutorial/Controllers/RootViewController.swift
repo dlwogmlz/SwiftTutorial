@@ -85,6 +85,7 @@ class RootViewController:UIViewController {
         //print("viewDidLoad")
         configureViewComponent()
         self.hideKeyboardWhenTappedAround()
+        self.moveViewWithKeyboard()
     }
     
     // 다크테마를 취소하면 Login view가 변하지 않을때
@@ -93,7 +94,7 @@ class RootViewController:UIViewController {
         // 디바이스의 테마가 변경될때마다 발동되어진다.
         configureColors()
     }
-    
+
     
     // 생김새 뷰를 담당하는 함수 따로정리
     // MARK: Configures
@@ -117,7 +118,7 @@ class RootViewController:UIViewController {
         
         view.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 90).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 350).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     
         view.addSubview(loginLabel)
