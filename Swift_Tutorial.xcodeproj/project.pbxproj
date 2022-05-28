@@ -17,6 +17,7 @@
 		347B84D42830B79900F98192 /* Swift_TutorialUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347B84D32830B79900F98192 /* Swift_TutorialUITestsLaunchTests.swift */; };
 		347B84E22830BDD600F98192 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347B84E12830BDD600F98192 /* RootViewController.swift */; };
 		347B84E62830D54F00F98192 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347B84E52830D54F00F98192 /* Extensions.swift */; };
+		34E8E47928424E2100B43FF7 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E8E47828424E2100B43FF7 /* ScrollViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		347B84D32830B79900F98192 /* Swift_TutorialUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_TutorialUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		347B84E12830BDD600F98192 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		347B84E52830D54F00F98192 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		34E8E47828424E2100B43FF7 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				347B84E12830BDD600F98192 /* RootViewController.swift */,
+				34E8E47828424E2100B43FF7 /* ScrollViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				347B84B12830B79600F98192 /* AppDelegate.swift in Sources */,
 				347B84B32830B79600F98192 /* SceneDelegate.swift in Sources */,
+				34E8E47928424E2100B43FF7 /* ScrollViewController.swift in Sources */,
 				347B84E22830BDD600F98192 /* RootViewController.swift in Sources */,
 				347B84E62830D54F00F98192 /* Extensions.swift in Sources */,
 			);
