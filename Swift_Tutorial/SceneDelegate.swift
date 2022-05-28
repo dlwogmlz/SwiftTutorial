@@ -17,9 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
-        //window?.rootViewController = RootViewController()
+        window?.rootViewController = UINavigationController(rootViewController: RootViewController())
         // 파일 실행시 진입점 파일 변경(RootViewController에서 ScrollViewController로)
-        window?.rootViewController = ScrollViewController()
+        // window?.rootViewController = ScrollViewController()
         window?.makeKeyAndVisible()
     }
 

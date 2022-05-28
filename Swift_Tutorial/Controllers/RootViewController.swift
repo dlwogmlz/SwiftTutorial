@@ -73,6 +73,9 @@ class RootViewController:UIViewController {
         let button = UIButton(type: UIButton.ButtonType.system)
         button.setTitle("LOGIN", for: UIControl.State.normal)
         button.layer.cornerRadius = 10
+        
+        //Login버튼을 눌렀을때 ScrollViewController로 이동하는 기능 만들기
+        button.addTarget(self, action: #selector(loginButtonTapped), for: UIControl.Event.touchUpInside)
         return button
     }()
     
@@ -93,6 +96,15 @@ class RootViewController:UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         // 디바이스의 테마가 변경될때마다 발동되어진다.
         configureColors()
+    }
+    
+    
+    // MARK: Selector
+    @objc func loginButtonTapped() {
+        //print("Login button tapped")
+        //pushViewController - 클릭시 화면전환방식, (ScrollViewController(), animated: true) - ScrollViewController로 이동
+        navigationController?.pushViewController(ScrollViewController(), animated: true)
+    
     }
 
     
